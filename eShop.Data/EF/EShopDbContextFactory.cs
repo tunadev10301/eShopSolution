@@ -8,9 +8,9 @@ using System.Text;
 
 namespace eShop.Data.EF
 {
-    public class EShopDbContextFactory : IDesignTimeDbContextFactory<eShopDbContext>
+    public class EShopDbContextFactory : IDesignTimeDbContextFactory<EShopDbContext>
     {
-        public eShopDbContext CreateDbContext(string[] args)
+        public EShopDbContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -19,10 +19,10 @@ namespace eShop.Data.EF
 
             var connectionString = configuration.GetConnectionString("TunaDatabase");
 
-            var optionsBuilder = new DbContextOptionsBuilder<eShopDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
-            return new eShopDbContext(optionsBuilder.Options);
+            return new EShopDbContext(optionsBuilder.Options);
         }
     }
 }
