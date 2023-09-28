@@ -11,9 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Application", "eShop.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Utilities", "eShop.Utilities\eShop.Utilities.csproj", "{F7B84FAA-F263-4656-9AD1-1A8D319F4A3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.ViewModels", "EShop.ViewModels\EShop.ViewModels.csproj", "{9A129706-B5CA-47C1-9913-4D62837484F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ViewModels", "EShop.ViewModels\eShop.ViewModels.csproj", "{9A129706-B5CA-47C1-9913-4D62837484F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.BackendApi", "eShop.BackendApi\eShop.BackendApi.csproj", "{5AB94CB3-AE44-4267-911F-0E7398848B26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.BackendApi", "eShop.BackendApi\eShop.BackendApi.csproj", "{5AB94CB3-AE44-4267-911F-0E7398848B26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Infrastructure", "1. Infrastructure", "{60BC5C6B-02F3-4D26-934D-8A6950953F12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{0CBC5435-8929-484B-B989-B1B0763B69B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Hosts", "3. Hosts", "{D16A703D-741B-4753-8A33-B64EDB40E53B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +54,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E745A0F4-08C1-42EC-982D-D06064B96C55} = {D16A703D-741B-4753-8A33-B64EDB40E53B}
+		{26D4AD5C-25C0-49CF-B799-3528854C52A7} = {0CBC5435-8929-484B-B989-B1B0763B69B3}
+		{01DB22EE-D9AA-4750-B73E-181314DA42B4} = {0CBC5435-8929-484B-B989-B1B0763B69B3}
+		{F7B84FAA-F263-4656-9AD1-1A8D319F4A3B} = {60BC5C6B-02F3-4D26-934D-8A6950953F12}
+		{9A129706-B5CA-47C1-9913-4D62837484F0} = {60BC5C6B-02F3-4D26-934D-8A6950953F12}
+		{5AB94CB3-AE44-4267-911F-0E7398848B26} = {D16A703D-741B-4753-8A33-B64EDB40E53B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE58B73C-24D7-4CBA-A7CD-ACB9AE35EA95}
