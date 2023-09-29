@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShop.ViewModels.Catalog.Products
+namespace eShop.ViewModels.System.Users
 {
-    public class GetManageProductPagingRequest : PagingRequestBase
+    public class GetUserPagingRequest : PagingRequestBase
     {
         public string Keyword { get; set; }
-        public List<int> CategoryIds { get; set; }
     }
 }
