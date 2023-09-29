@@ -1,8 +1,8 @@
 ﻿using eShop.Application.Catalog.ProductImages;
 using eShop.ViewModels.Catalog.ProductImages;
 using eShop.ViewModels.Catalog.Products;
-using EShop.ViewModels.Catalog.Products;
-using EShop.ViewModels.Common;
+using eShop.ViewModels.Catalog.Products;
+using eShop.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eShop.Application.Catalog.Products
 {
-    public interface IManageProductService
+    public interface IProductService
     {
         Task<int> Create(ProductCreateRequest request);
         Task<int> Update(ProductUpdateRequest request);
@@ -26,5 +26,6 @@ namespace eShop.Application.Catalog.Products
         Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
         Task<ProductImageViewModal> GetImageById(int imageId);
         Task<List<ProductImageViewModal>> GetListImages(int productId);
+        Task<PagedResult<ProductViewModal>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
     }
 }
