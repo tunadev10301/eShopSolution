@@ -49,5 +49,18 @@ namespace eShop.AdminApp.Services
 
             return users;
         }
+
+        public async Task<bool> RegisterUser(RegisterRequest register)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+
+            var json = JsonConvert.SerializeObject(register);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync($"/api/Users", httpContent);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }
