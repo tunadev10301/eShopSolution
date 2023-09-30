@@ -75,7 +75,8 @@ namespace eShop.Application.System.Users
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber,
                 Email = user.Email,
-                Dob = user.Dob
+                Dob = user.Dob,
+                UserName = user.UserName
             };
 
             return new ApiSuccessResult<UserViewModel>(userViewModel);
@@ -105,7 +106,9 @@ namespace eShop.Application.System.Users
             //4. Select and projection
             var pagedResult = new PagedResult<UserViewModel>()
             {
-                TotalRecord = totalRow,
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
                 Items = data
             };
 
