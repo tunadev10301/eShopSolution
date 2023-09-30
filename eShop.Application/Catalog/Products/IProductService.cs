@@ -1,12 +1,8 @@
 ﻿using eShop.Application.Catalog.ProductImages;
 using eShop.ViewModels.Catalog.ProductImages;
 using eShop.ViewModels.Catalog.Products;
-using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.Common;
-using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eShop.Application.Catalog.Products

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace eShop.AdminApp.Controllers
@@ -25,13 +26,12 @@ namespace eShop.AdminApp.Controllers
             var sessions = HttpContext.Session.GetString("Token");
             var request = new GetUserPagingRequest()
             {
-                BearerToken = sessions,
                 Keyword = keyword,
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
             var data = await _userApiClient.GetUsersPaging(request);
-            return View(data);
+            return View(data.ResultObj);
         }
 
         [HttpGet]
@@ -48,10 +48,48 @@ namespace eShop.AdminApp.Controllers
 
             var result = await _userApiClient.RegisterUser(register);
 
-            if (result)
+            if (result.IsSucceed)
                 return RedirectToAction("Index");
 
+            ModelState.AddModelError("", result.Message);
             return View(register);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            if (result.IsSucceed)
+            {
+                var user = result.ResultObj;
+                var updateRequest = new UserUpdateRequest()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    Dob = user.Dob,
+                    Id = id
+                };
+
+                return View(updateRequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _userApiClient.UpdateUser(request.Id, request);
+
+            if (result.IsSucceed)
+                return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.Message);
+            return View(request);
         }
 
         [HttpPost]

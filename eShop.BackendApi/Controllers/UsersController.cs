@@ -29,13 +29,13 @@ namespace eShop.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var resultToken = await _userService.Authenticate(request);
-            if (string.IsNullOrEmpty(resultToken))
+            var result = await _userService.Authenticate(request);
+            if (string.IsNullOrEmpty(result.ResultObj))
             {
-                return BadRequest("Username or password is incorrect.");
+                return BadRequest(result);
             }
 
-            return Ok(resultToken);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -46,18 +46,40 @@ namespace eShop.BackendApi.Controllers
                 return BadRequest(ModelState);
 
             var result = await _userService.Register(request);
-            if (!result)
+            if (!result.IsSucceed)
             {
-                return BadRequest("Register unsuccessful.");
+                return BadRequest(result);
             }
 
-            return Ok();
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.Update(id, request);
+            if (!result.IsSucceed)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllUserPaging([FromQuery] GetUserPagingRequest request)
         {
             var users = await _userService.GetUsersPaging(request);
+            return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var users = await _userService.GetUserById(id);
             return Ok(users);
         }
     }
